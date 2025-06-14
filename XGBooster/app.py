@@ -4,10 +4,8 @@ import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Load trained model
 model = joblib.load("xgb_score_model.pkl")
 
-# Load dataset for visualization
 df = pd.read_csv("score_updated.csv")
 
 # Title
@@ -75,6 +73,5 @@ with tab4:
     ax4.set_title("Correlation between Hours and Scores")
     st.pyplot(fig4)
 
-# Footer
 st.markdown("---")
 st.caption("Developed with ❤️ using Streamlit & XGBoost")
