@@ -8,22 +8,18 @@ model = joblib.load("xgb_score_model.pkl")
 
 df = pd.read_csv("score_updated.csv")
 
-# Title
 st.title("🎓 Student Performance Predictor")
 
-# Input: Study Hours
 st.sidebar.header("Input Student Study Hours")
 hours = st.sidebar.slider("Study Hours", min_value=0.0, max_value=10.0, step=0.1)
 
-# Prediction
 input_df = pd.DataFrame({
     "Hours": [hours],
-    "Category": ["Default"]  # required dummy categorical column
+    "Category": ["Default"]  
 })
 
 predicted_score = model.predict(input_df)[0]
 
-# Classify performance
 if predicted_score >= 75:
     performance = "Good"
     color = "green"
@@ -34,11 +30,9 @@ else:
     performance = "Bad"
     color = "red"
 
-# Display result
 st.markdown(f"### Predicted Score: **{predicted_score:.2f}**")
 st.markdown(f"### Performance: :{color}[**{performance}**]")
 
-# Visualizations
 st.header("📊 Data Analysis")
 
 tab1, tab2, tab3, tab4 = st.tabs(["Scatter Plot", "Histogram", "Box Plot", "Correlation Heatmap"])
